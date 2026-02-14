@@ -49,10 +49,10 @@ def detect_on_image(detector: SCRFD, image_path: Path, threshold: Threshold):
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Batch face detection with SCRFD")
-    parser.add_argument("in_dir", type=Path, help="Directory containing input images")
-    parser.add_argument("out_dir", type=Path, help="Directory to write detection JSON files")
-    parser.add_argument("model_path", type=Path, help="Path to SCRFD ONNX model")
-    parser.add_argument("threshold", type=float, help="Detection probability threshold (0-1)")
+    parser.add_argument("--in_dir", type=Path, help="Directory containing input images")
+    parser.add_argument("--out_dir", type=Path, help="Directory to write detection JSON files")
+    parser.add_argument("--model_path", type=Path, default="./models/scrfd.onnx", help="Path to SCRFD ONNX model")
+    parser.add_argument("--threshold", type=float, default=0.4, help="Detection probability threshold (0-1)")
     args = parser.parse_args()
 
     if not args.in_dir.is_dir():
